@@ -1,0 +1,19 @@
+##http://www.python-excel.org/
+##excel办公自动化
+import  xlrd #读excel https://www.cnblogs.com/hanzhao1987/p/5957425.html
+workbook= xlrd.open_workbook('filepath')#C:/python/test.xls
+sheet=workbook.sheet_by_index(0)
+print(sheet.cell_value(1,1))#几行几列 0，0开始
+
+import  xlwt #写excel https://xlwt.readthedocs.io/en/latest/api.html
+workbook=xlwt.Workbook()
+worksheet=workbook.add_sheet('new_sheet')
+worksheet.write(0,0,'姓名')#几行几列
+workbook.save('filepath')
+
+from  xlutils.copy import  copy#复制文件
+temp_workbook= xlrd.open_workbook('filepath')
+new_workbook=copy(temp_workbook)
+new_sheet=new_workbook.get_sheet(0)
+
+##制作汇总表思路：1.制作号模板  2.拷贝模板  3 填充数据
